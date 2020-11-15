@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Moneda;
+use App\Cuenta;
 use Illuminate\Http\Request;
 Use App;
 use App\Http\Controllers\Auth;
@@ -26,7 +27,7 @@ class MonedaController extends Controller
         $id = auth()->user()->id;
         $monedasl =Moneda::All();
         $monedasl = Moneda::where('user_id', $id)->get();
-        return view('monedas', compact('monedasl'));
+        return view('monedas.monedas', compact('monedasl'));
         
         
     }
@@ -68,9 +69,9 @@ class MonedaController extends Controller
      * @param  \App\Colas  $Colas
      * @return \Illuminate\Http\Response
      */
-    public function show(Moneda $Moneda)
+    public function show(Moneda $moneda)
     {
-        //
+       
     }
 
     /**
@@ -79,9 +80,9 @@ class MonedaController extends Controller
      * @param  \App\Colas  $Colas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Moneda $Moneda)
+    public function edit(Moneda $moneda)
     {
-        
+        return view('monedas.edit',compact('moneda'));
     }
 
     /**
@@ -94,7 +95,11 @@ class MonedaController extends Controller
     public function update(Request $request, Moneda $moneda)
     {
         $moneda->update($request->all());
-        return back();
+       
+        
+        return redirect()->route('monedas.index');
+        
+       
        
     }
 
@@ -104,10 +109,14 @@ class MonedaController extends Controller
      * @param  \App\Colas  $Colas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Moneda $Moneda)
+    public function destroy(Moneda $moneda)
     {
-        $Moneda->delete();
+        $cuentas = Cuenta::where('moneda_id', $moneda->id)->delete();       
+        $moneda->delete();
         return back();
+        
+        
+        
     }
 }
 

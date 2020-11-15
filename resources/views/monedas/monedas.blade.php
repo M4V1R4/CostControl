@@ -61,13 +61,15 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    
+                                        <td>
+                           
+                                    <a type="submit"href="{{ route('monedas.edit',$moneda->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
+                            
+                                    </td> 
                                     </form>
                                 </td>
-                                <td>
-                                <button type="button" class="btn btn-warning openBtn" data-toggle="modal" data-target="#user-id-2" value="{{$moneda->id}}"><i class="fa fa-edit"></i></button>
-                                 
-                                </td>           
+                                
+                                         
                     </tr>
                             @endforeach
                 
@@ -77,56 +79,9 @@
         </div>
     <div>
         
-<form action="{{ route('monedas.update',$moneda->id) }}" method="POST">
 
-@csrf
-
-@method('PUT')
-<div  id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Moneda</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-                <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre:</label>
-                <input name='nombre'  type="text" class="form-control"  value="{{$moneda->simbolo}}">
-                <label for="simbolo" class="col-md-4 col-form-label text-md-right">Simbolo:</label>
-                <input name='simbolo'  type="text" class="form-control"value="{{$moneda->simbolo}}" >
-                <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion:</label>
-                <input name='descripcion'  type="text" class="form-control" value="{{$moneda->descripcion}}">
-                <label for="tasa" class="col-md-4 col-form-label text-md-right">Tasa:</label>
-                <input name='tasa'  type="text" class="form-control" value="{{$moneda->tasa}}">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-      <button type="submit" class="btn btn-warning" >Editar <i class="fa fa-edit"></i></button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar <i class="fa fa-ban"> </i></button>
-        
-      
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-</form>
 
 @endsection
 
 
 
-<script>
-$('.openBtn').on('click',function(){
-    $('.modal-body').load('monedas.blade.php',function(){
-        $('#myModal').modal({show:true});
-    });
-});
-</script>
