@@ -21,7 +21,7 @@ class CreateCuentasTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->double('saldoInicial');
-            $table->string('icono');
+            $table->string('icono')->unsigned()->nullable();
         });
     }
 
