@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCategorias extends Migration
+class CreateCategorias extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,13 @@ class CreateTableCategorias extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_catPadre');
+            $table->unsignedInteger('id_catPadre')->unsigned()->nullable();
             $table->string('user_id');
             $table->string('tipo');
-            $table->string('descripcion');
-            $table->string('comentario')->unsigned()->nullable();
+            $table->string('descripcion')->unsigned()->nullable();
             $table->string('icono')->unsigned()->nullable();
             $table->double('presupuesto');
-            $table->foreign('id_catPadre')->references('id')->on('categoriaPadre');
-            
+            $table->foreign('id_catPadre')->references('id')->on('mis_categorias');
         });
     }
 
