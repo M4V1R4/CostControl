@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-  <form action="{{ route('miscategorias.update',$miscategorias->id) }}" method="POST">
+  <form action="{{ route('miscategorias.update',$miscategoriasl->id) }}" method="POST">
 
   @csrf
 
@@ -19,18 +19,28 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-                  <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>
-                  <input name='categoriaPadre'  type="text" class="form-control" value="{{$miscategorias->categoriaP}}">
-                  <label for="descripcion" class="col-md-4 col-form-label text-md-right">Sub Categoria:</label>
-                  <input name='subCategoria'  type="text" class="form-control" value="{{$miscategorias->subcategoria}}" >
+            <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>                            
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
+
+                            @foreach( $padre as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        <input id="valorDeSelect" type="text" name="id_catPadre" value="{{$miscategoriasl->cantPadre}}">
+                        <label for="descripcion" class="col-md-4 col-form-label text-md-right">SubCategoria:</label>
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)">
+
+                            @foreach( $sub as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        <input id="valorDeSelect2" type="text" name="descripcion" value="{{$miscategoriasl->subCategoria}}">
                         
-                  <select  selected="selected" name="moneda_id" value="{{$cuenta->moneda_id}}">
-                        @foreach( $monedas as $key => $value )
-
-                        <option value="{{ $value }}">{{ $key}}</option>
-
-                        @endforeach
-                    </select>
+                  
                   
             </div>
           </form>
@@ -48,4 +58,22 @@
   </div>
 
   </form>
+
+
+  <script>
+    var valorEnvio = ""
+
+    function selecOp(valor){
+    document.getElementById("valorDeSelect").value = valor
+    }
+
+ 
+    var valorEnvio2 = ""
+
+    function selecOp2(valor){
+    document.getElementById("valorDeSelect2").value = valor
+    }
+   
+
+</script>
 @endsection

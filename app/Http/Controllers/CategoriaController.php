@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\CategoriaPadre;
+use App\MisCategorias;
 use App\Categoria;
 Use App;
 use App\Http\Controllers\Auth;
@@ -25,13 +25,11 @@ class CategoriaController extends Controller
         {
            
             $id = auth()->user()->id;
-            //$monedanombre = Moneda::join('cuentas','cuentas.moneda_id','=','monedas.id')->select('monedas.id', 'monedas.nombre')->where('monedas.user_id', $id)->get();
-            $cuentasl =Cuenta::All();
-            $cuentasl = Cuenta::where('user_id', $id)->get();
-            $monedas=Moneda::pluck('id','nombre');
-            $monedasl =Moneda::All();
-            $monedasl = Moneda::where('user_id', $id)->get();
-            return view('cuentas.cuentas', compact('cuentasl','monedas','monedasl'));
+            $categoriasl =Categoria::All();
+            $categoriasl = Categoria::where('user_id', $id)->get();
+            $padre=MisCategorias::pluck('id','categoriaP');
+            $sub=MisCategorias::pluck('id','subcategoria');
+            return view('categorias.categorias', compact('categoriasl','padre','sub'));
             
              
         } 
@@ -49,21 +47,16 @@ class CategoriaController extends Controller
          */
         public function store(Request $request)
         {
-            /**$id = auth()->user()->id;
-            $file = $request->file('icono');
-            $pic_name = time() . $file->getClientOriginalName();
-            $file->move(public_path() . '/images/' . $id, $pic_name);
-            $pic_route = $id . '/' . $pic_name;*/
             
+            $id=0;
     
-            $nuevoCuenta = new Cuenta;
-            $nuevoCuenta->nombre = $request->nombre;
-            $nuevoCuenta->user_id = auth()->user()->id;
-            $nuevoCuenta->moneda_id = $request->moneda_id;
-            $nuevoCuenta->descripcion =$request->descripcion;
-            $nuevoCuenta->saldoInicial =$request->saldoInicial;
-            //$nuevoCuenta->icono = $pic_route;
-            $nuevoCuenta->save();
+            $nuevoCategoria = new Categoria;
+            $nuevoCategoria->tipo = $request->tipo;
+            $nuevoCategoria->user_id = auth()->user()->id;
+            $nuevoCategoria->catPadre = $request->id_catPadre;
+            $nuevoCategoria->descripcion =$request->descripcion;
+            $nuevoCategoria->presupuesto =$request->presupuesto;
+            $nuevoCategoria->save();
             return back();
                             
         }
@@ -86,10 +79,11 @@ class CategoriaController extends Controller
          * @param  \App\Colas  $Colas
          * @return \Illuminate\Http\Response
          */
-        public function edit(Cuenta $cuenta)
+        public function edit(Categoria $categoria)
     
-        {   $monedas=Moneda::pluck('id','nombre');
-            return view('cuentas.edit',compact('cuenta','monedas'));
+        {   $padre=MisCategorias::pluck('id','categoriaP');
+            $sub=MisCategorias::pluck('id','subcategoria');
+            return view('categorias.edit', compact('categoria','padre','sub'));
         }
     
         /**
@@ -99,12 +93,12 @@ class CategoriaController extends Controller
          * @param  \App\Colas  $Colas
          * @return \Illuminate\Http\Response
          */
-        public function update(Request $request, Cuenta $cuenta)
+        public function update(Request $request, Categoria $categoria)
         {
-            $cuenta->update($request->all());
+            $categoria->update($request->all());
            
             
-            return redirect()->route('cuentas.index');
+            return redirect()->route('categorias.index');
             
            
         }
@@ -115,9 +109,9 @@ class CategoriaController extends Controller
          * @param  \App\Colas  $Colas
          * @return \Illuminate\Http\Response
          */
-        public function destroy(Cuenta $cuenta)
+        public function destroy(Categoria $categoria)
         {
-            $cuenta->delete();
+            $categoria->delete();
             return back();
         }
     

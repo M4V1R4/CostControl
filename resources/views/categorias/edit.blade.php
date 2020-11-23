@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-  <form action="{{ route('cuentas.update',$cuenta->id) }}" method="POST">
+  <form action="{{ route('categorias.update',$categoria->id) }}" method="POST">
 
   @csrf
 
@@ -11,7 +11,7 @@
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar Cuenta</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Editar Categoria</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -19,29 +19,47 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-                  <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre:</label>
-                  <input name='nombre'  type="text" class="form-control"  value="{{$cuenta->nombre}}">
-                  <label for="simbolo" class="col-md-4 col-form-label text-md-right">Moneda:</label>
-                  
-                  <select  selected="selected" name="moneda_id" value="{{$cuenta->moneda_id}}">
-                        @foreach( $monedas as $key => $value )
+            <div class="input-group">
+            
+            <label for="nombre" class="col-md-4 col-form-label text-md-right">Tipo:</label>            
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp3(event.target.value)">
+                        <option>Ingreso</option>
+                          <option>Gasto</option>
+                        </select>
+                        <input id="valorDeSelect3" type="text" name="tipo" value="{{$categoria->tipo}}">
 
-                        <option value="{{ $value }}">{{ $key}}</option>
+                    <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>                            
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
 
-                        @endforeach
-                    </select>
+                            @foreach( $padre as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        
+                        <input id="valorDeSelect" type="text" name="catPadre" value="{{$categoria->catPadre}}">
+                        <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion:</label>
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)">
+
+                            @foreach( $sub as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        <input id="valorDeSelect2" type="text" name="descripcion" value="{{$categoria->descripcion}}">
+                        <label for="tasa" class="col-md-4 col-form-label text-md-right">Presupuesto:</label>
+                        <input name='presupuesto'  type="text" class="form-control" aria-label="" value="{{$categoria->presupuesto}}" >
+                        <div class="from-group mx-sm-4">
                   
-                  <label for="desc" class="col-md-4 col-form-label text-md-right">Descripcion:</label>
-                  <input name='descripcion'  type="text" class="form-control" value="{{$cuenta->descripcion}}">
-                  <label for="tasa" class="col-md-4 col-form-label text-md-right">Saldo Inicial:</label>
-                  <input name='saldoInicial'  type="text" class="form-control" value="{{$cuenta->saldoInicial}}">
             </div>
           </form>
         </div>
         <div class="modal-footer">
         <button type="submit" class="btn btn-warning" >Editar <i class="fa fa-edit"></i></button>
 
-          <a href="{{ route('cuentas.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
+          <a href="{{ route('categorias.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
           
         
         </div>
@@ -51,4 +69,27 @@
   </div>
 
   </form>
+
+
+  <script>
+    var valorEnvio = ""
+
+    function selecOp(valor){
+    document.getElementById("valorDeSelect").value = valor
+    }
+
+ 
+    var valorEnvio2 = ""
+
+    function selecOp2(valor){
+    document.getElementById("valorDeSelect2").value = valor
+    }
+    var valorEnvio3 = ""
+
+    function selecOp3(valor){
+    document.getElementById("valorDeSelect3").value = valor
+    }
+
+
+</script>
 @endsection

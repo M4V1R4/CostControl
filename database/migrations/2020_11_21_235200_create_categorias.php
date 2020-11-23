@@ -15,13 +15,13 @@ class CreateCategorias extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_catPadre')->unsigned()->nullable();
+            $table->string('catPadre')->unsigned()->nullable();
             $table->string('user_id');
             $table->string('tipo');
             $table->string('descripcion')->unsigned()->nullable();
             $table->string('icono')->unsigned()->nullable();
             $table->double('presupuesto');
-            $table->foreign('id_catPadre')->references('id')->on('mis_categorias');
+           
         });
     }
 

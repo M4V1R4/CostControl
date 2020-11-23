@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MisCategorias;
+use App\Categoria;
 Use App;
 use App\Http\Controllers\Auth;
 
@@ -26,7 +27,9 @@ class MisCategoriasController extends Controller
         $id = auth()->user()->id;
         $MisCategoriasl= MisCategorias::All();
         $MisCategoriasl = MisCategorias::where('user_id', $id)->get();
-        return view('misCategorias.categorias', compact('MisCategoriasl'));
+        $padre=MisCategorias::pluck('id','categoriaP');
+        $sub=MisCategorias::pluck('id','subcategoria');
+        return view('misCategorias.categorias', compact('MisCategoriasl','padre','sub'));
         
          
     } 
@@ -46,7 +49,6 @@ class MisCategoriasController extends Controller
     {
 
         $MisCategorias = new MisCategorias;
-        $MisCategorias->tipo = $request->tipo;
         $MisCategorias->user_id = auth()->user()->id;
         $MisCategorias->categoriaP = $request->categoriaP;
         $MisCategorias->subcategoria =$request->subcategoria;
@@ -73,22 +75,16 @@ class MisCategoriasController extends Controller
      * @param  \App\Colas  $Colas0
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuenta $cuenta)
+    public function edit(MisCategorias $miscategoriasl)
 
     {    
-        return view('misCategorias.edit',compact('MisCategorias'));
+        return view('misCategorias.edit',compact('miscategoriasl'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Colas  $Colas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, MisCategorias $MisCategorias)
+  
+    public function update(Request $request, MisCategorias $miscategoriasl)
     {
-        $MisCategorias->update($request->all());
+        $miscategoriasl->update($request->all());
        
         
         return redirect()->route('misCategorias.index');
@@ -96,15 +92,11 @@ class MisCategoriasController extends Controller
        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Colas  $Colas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(MisCategorias $MisCategorias)
-    {
-        $MisCategorias->delete();
+   
+    public function destroy(MisCategorias $miscategorias)
+
+    {   $miscategorias->delete();     
+     
         return back();
     }
 }

@@ -11,20 +11,28 @@
 
                     @csrf
                     <div class="input-group">
-                    <select name='tipo' class="selectpicker" >
-                            <option>Ingreso</option>
-                            <option>Gasto</option>
+                        
+                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>                            
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
+                        <option value=""></option> 
+                            @foreach( $padre as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
                         </select>
-                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>
-                        <input name='categoriaPadre'  type="text" class="form-control" aria-label="">
-
-                        
-
+                        <input id="valorDeSelect" type="text" name="categoriaP" value="">
                         <label for="descripcion" class="col-md-4 col-form-label text-md-right">Sub Categoria:</label>
-                        <input name='subCategoria'  type="text" class="form-control" aria-label="" >
-                        
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)">
+                        <option value=""></option> 
+                            @foreach( $sub as $key => $value )
 
-                        
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        <input id="valorDeSelect2" type="text" name="subcategoria" value="">
+
                     </div>
 
                         
@@ -51,24 +59,24 @@
                    
                         <tbody>
                      
-                            @foreach($miscategoriasl  as $miscategorias)
+                            @foreach($MisCategoriasl  as $miscategoriasl)
                             <tr>
-                                <td name='id'>{{$miscategorias->id }}</td>
-                                <td name='url'>{{$miscategorias->tipo}}</td>
+                                <td name='id'>{{$miscategoriasl->id }}</td>
+                                <td name='url'>{{$miscategoriasl->tipo}}</td>
                                
-                                <td name='format'>{{$miscategorias->categoriaP}}</td>
-                                <td name='saldoInicial'>{{$miscategorias->subcategoria}}</td>
+                                <td name='format'>{{$miscategoriasl->categoriaP}}</td>
+                                <td name='saldoInicial'>{{$miscategoriasl->subcategoria}}</td>
                                 
 
                                 <td>
-                                    <form method="POST" class="form-delete" action="{{ route('miscategorias.destroy',$miscategorias->id)}}">
+                                    <form method="POST" class="form-delete" action="{{ route('miscategorias.destroy',$miscategoriasl->id ) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
                                        
                            
-                                        <a type="submit"href="{{ route('miscategorias.edit',$miscategorias->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
+                                        <a type="submit"href="{{ route('miscategorias.edit',$miscategoriasl->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
                    
                                        
                                     </form>
@@ -83,7 +91,22 @@
     <div>
         
 
+<script>
+    var valorEnvio = ""
 
+    function selecOp(valor){
+    document.getElementById("valorDeSelect").value = valor
+    }
+
+ 
+    var valorEnvio2 = ""
+
+    function selecOp2(valor){
+    document.getElementById("valorDeSelect2").value = valor
+    }
+
+
+</script>
 
 
 

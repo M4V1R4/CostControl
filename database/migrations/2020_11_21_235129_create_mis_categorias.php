@@ -15,7 +15,6 @@ class CreateMisCategorias extends Migration
     {
         Schema::create('mis_categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
             $table->string('user_id');
             $table->string('categoriaP')->unsigned()->nullable();
             $table->string('subcategoria')->unsigned()->nullable();
