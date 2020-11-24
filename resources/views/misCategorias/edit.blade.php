@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-  <form action="{{ route('miscategorias.update',$miscategoriasl->id) }}" method="POST">
+  <form action="{{ route('miscategorias.update',$miscatego->id) }}" method="POST">
 
   @csrf
 
@@ -28,7 +28,7 @@
 
                             @endforeach
                         </select>
-                        <input id="valorDeSelect" type="text" name="id_catPadre" value="{{$miscategoriasl->cantPadre}}">
+                        <input id="valorDeSelect" type="text" name="id_catPadre" value="{{$miscatego->cantPadre}}">
                         <label for="descripcion" class="col-md-4 col-form-label text-md-right">SubCategoria:</label>
                         <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)">
 
@@ -38,7 +38,7 @@
 
                             @endforeach
                         </select>
-                        <input id="valorDeSelect2" type="text" name="descripcion" value="{{$miscategoriasl->subCategoria}}">
+                        <input id="valorDeSelect2" type="text" name="descripcion" value="{{$miscatego->subCategoria}}">
                         
                   
                   

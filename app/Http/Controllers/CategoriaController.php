@@ -27,8 +27,8 @@ class CategoriaController extends Controller
             $id = auth()->user()->id;
             $categoriasl =Categoria::All();
             $categoriasl = Categoria::where('user_id', $id)->get();
-            $padre=MisCategorias::pluck('id','categoriaP');
-            $sub=MisCategorias::pluck('id','subcategoria');
+            $padre=Categoria::pluck('id','catPadre');
+            $sub=Categoria::pluck('id','descripcion');
             return view('categorias.categorias', compact('categoriasl','padre','sub'));
             
              
@@ -53,7 +53,7 @@ class CategoriaController extends Controller
             $nuevoCategoria = new Categoria;
             $nuevoCategoria->tipo = $request->tipo;
             $nuevoCategoria->user_id = auth()->user()->id;
-            $nuevoCategoria->catPadre = $request->id_catPadre;
+            $nuevoCategoria->catPadre = $request->catPadre;
             $nuevoCategoria->descripcion =$request->descripcion;
             $nuevoCategoria->presupuesto =$request->presupuesto;
             $nuevoCategoria->save();
@@ -81,8 +81,8 @@ class CategoriaController extends Controller
          */
         public function edit(Categoria $categoria)
     
-        {   $padre=MisCategorias::pluck('id','categoriaP');
-            $sub=MisCategorias::pluck('id','subcategoria');
+        {   $padre=Categoria::pluck('id','catPadre');
+            $sub=Categoria::pluck('id','descripcion');
             return view('categorias.edit', compact('categoria','padre','sub'));
         }
     

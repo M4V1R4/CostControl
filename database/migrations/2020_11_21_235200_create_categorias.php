@@ -20,7 +20,7 @@ class CreateCategorias extends Migration
             $table->string('tipo');
             $table->string('descripcion')->unsigned()->nullable();
             $table->string('icono')->unsigned()->nullable();
-            $table->double('presupuesto');
+            $table->double('presupuesto')->unsigned()->nullable();
            
         });
     }

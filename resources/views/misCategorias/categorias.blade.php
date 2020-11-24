@@ -48,7 +48,6 @@
                     <thead>
                         <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Tipo</th>
                         <th scope="col">Categoria Padre</th>
                         <th scope="col">Sub Categoria</th>
                         
@@ -59,27 +58,26 @@
                    
                         <tbody>
                      
-                            @foreach($MisCategoriasl  as $miscategoriasl)
+                            @foreach($miscategoriasl  as $miscatego)
                             <tr>
-                                <td name='id'>{{$miscategoriasl->id }}</td>
-                                <td name='url'>{{$miscategoriasl->tipo}}</td>
+                                <td name='id'>{{$miscatego->id}}</td>
+                                <td name='url'>{{$miscatego->tipo}}</td>
                                
-                                <td name='format'>{{$miscategoriasl->categoriaP}}</td>
-                                <td name='saldoInicial'>{{$miscategoriasl->subcategoria}}</td>
+                                <td name='format'>{{$miscatego->categoriaP}}</td>
+                                <td name='saldoInicial'>{{$miscatego->subcategoria}}</td>
                                 
 
                                 <td>
-                                    <form method="POST" class="form-delete" action="{{ route('miscategorias.destroy',$miscategoriasl->id ) }}">
+                                <form method="POST" class="form-delete" action="{{ route('miscategorias.destroy', $miscatego->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
-                                       
-                           
-                                        <a type="submit"href="{{ route('miscategorias.edit',$miscategoriasl->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
+                                        <a type="submit"href="{{ route('miscategorias.edit',$miscatego->id)}}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
                    
                                        
                                     </form>
+                                    
                                 </td>
                              </tr>
                             @endforeach

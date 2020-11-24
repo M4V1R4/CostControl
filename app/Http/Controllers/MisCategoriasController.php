@@ -14,37 +14,20 @@ class MisCategoriasController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     
     public function index()
     {
        
         $id = auth()->user()->id;
-        $MisCategoriasl= MisCategorias::All();
-        $MisCategoriasl = MisCategorias::where('user_id', $id)->get();
+        $miscategoriasl= MisCategorias::All();
+        $miscategoriasl = MisCategorias::where('user_id', $id)->get();
         $padre=MisCategorias::pluck('id','categoriaP');
         $sub=MisCategorias::pluck('id','subcategoria');
-        return view('misCategorias.categorias', compact('MisCategoriasl','padre','sub'));
+        return view('misCategorias.categorias', compact('miscategoriasl','padre','sub'));
         
          
     } 
-    public function create()
-    {
-        
-      
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
 
@@ -56,35 +39,18 @@ class MisCategoriasController extends Controller
         return back();
                         
     }
-    
+ 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Colas  $Colas
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cuenta $Moneda)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Colas  $Colas0
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(MisCategorias $miscategoriasl)
+    public function edit(MisCategorias $miscatego)
 
     {    
-        return view('misCategorias.edit',compact('miscategoriasl'));
+        return view('misCategorias.edit',compact('miscatego'));
     }
 
   
-    public function update(Request $request, MisCategorias $miscategoriasl)
+    public function update(Request $request, MisCategorias $miscatego)
     {
-        $miscategoriasl->update($request->all());
+        $miscatego->update($request->all());
        
         
         return redirect()->route('misCategorias.index');
@@ -93,10 +59,10 @@ class MisCategoriasController extends Controller
     }
 
    
-    public function destroy(MisCategorias $miscategorias)
-
-    {   $miscategorias->delete();     
-     
-        return back();
+    public function destroy(MisCategorias $miscatego)
+    {   
+        $miscatego->delete();
+        return back();  
+        
     }
 }

@@ -26,4 +26,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('monedas','MonedaController');
 Route::resource('cuentas','CuentaController');
 Route::resource('categorias','CategoriaController');
+Route::resource('transacciones','TransaccionController');
 Route::resource('miscategorias','MisCategoriasController');

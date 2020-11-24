@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-  <form action="{{ route('categorias.update',$categoria->id) }}" method="POST">
+  <form action="{{ route('transacciones.update',$categoria->id) }}" method="POST">
 
   @csrf
 
@@ -60,7 +60,7 @@
         <div class="modal-footer">
         <button type="submit" class="btn btn-warning" >Editar <i class="fa fa-edit"></i></button>
 
-          <a href="{{ route('categorias.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
+          <a href="{{ route('transacciones.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
           
         
         </div>
