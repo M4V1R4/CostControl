@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCuentasTable extends Migration
+class CreateCategorias extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateCuentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cuentas', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->id();
+            $table->string('catPadre')->unsigned()->nullable();
             $table->string('user_id');
-            $table->unsignedInteger('moneda_id');
-            $table->foreign('moneda_id')->references('id')->on('monedas');
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->double('saldoInicial');
+            $table->string('tipo');
+            $table->string('descripcion')->unsigned()->nullable();
             $table->string('icono')->unsigned()->nullable();
+            $table->double('presupuesto')->unsigned()->nullable();
+           
         });
     }
 
@@ -32,6 +32,6 @@ class CreateCuentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuentas');
+        Schema::dropIfExists('categorias');
     }
 }
