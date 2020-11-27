@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use App\Transaccione;
+use App\Transaccion;
 use App\Cuenta;
 Use App;
 use App\Categoria;
-use Carbon\Carbon;
 use App\Http\Controllers\Auth;
 
 class TransaccionController extends Controller
@@ -21,21 +21,38 @@ class TransaccionController extends Controller
     {
        
         $id = auth()->user()->id;
-        $transaccionesl= Transaccione::All();
-        $transaccionesl = Transaccione::where('user_id', $id)->get();
+        $transaccionesl= Transaccion::All();
+        $transaccionesl = Transaccion::where('user_id', $id)->get();
         $padre=Categoria::pluck('id','catPadre');
         $sub=Categoria::pluck('id','descripcion');
         $cuentas=Cuenta::pluck('id','nombre');
-        return view('transacciones.transacciones', compact('transaccionesl','padre','sub','cuentas'));
+        return view('transaccions.transaccions', compact('transaccionesl','padre','sub','cuentas'));
         
          
     } 
-   
+    public function destroy($id)
+    {
+        Transaccion::destroy($id);
+        return back();
+    }
+    
+    public function show(Transaccion $Moneda)
+    {
+        //
+    }
+    
     public function store(Request $request)
     {
-        
 
-        $transacciones = new Transaccione;
+        if($request->tipo == 'Gasto'){
+            echo 'Gasto';
+        }
+        elseif($request->tipo == 'Ingreso'){
+            echo 'Ingreso';
+        }
+        elseif($request->categoria == 'Traslado'){}
+        $now = new \DateTime();
+        $transacciones = new Transaccion;
         $transacciones->user_id = auth()->user()->id;
         $transacciones->tipo = $request->tipo;
         $transacciones->fecha = $now;
@@ -49,28 +66,21 @@ class TransaccionController extends Controller
     }
  
 
-    public function edit(Transaccione $transacc)
-
+    public function edit($id)
     {    
-        return view('transacciones.edit',compact('transacc'));
+        $transacc = Transaccion::find($id);
+        $padre=Categoria::pluck('id','catPadre');
+        $sub=Categoria::pluck('id','descripcion');
+        $cuentas=Cuenta::pluck('id','nombre');
+        return view('transaccions.edit', compact('transacc','padre','sub','cuentas'));
     }
 
   
-    public function update(Request $request, Transaccione $transacc)
+    public function update(Request $request, Transaccion $transacc)
     {
         $transacc->update($request->all());
-       
-        
-        return redirect()->route('transacciones.index');
+        return redirect()->route('transaccions.index');
         
        
-    }
-
-   
-    public function destroy(Transaccione $transacc)
-    {   
-        $transacc->delete();
-        return back();  
-        
-    }
+    }  
 }

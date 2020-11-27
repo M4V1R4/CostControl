@@ -7,7 +7,7 @@
                 <div class="col-md-20">
                 
                     
-                <form action="{{ route('transacciones.store') }}" method="POST"> 
+                <form action="{{ route('transaccions.store') }}" method="POST"> 
 
 
                     @csrf
@@ -16,7 +16,8 @@
                     <select name='tipo' class="selectpicker" >
                     <option value=""></option> 
                             <option>Ingreso</option>
-                            <option>Gasto</option>
+                            <option>Gasto</option> 
+                            <option>Traslado</option>
                     </select>
                     <label for="nombre" class="col-md-4 col-form-label text-md-right">Cuenta:</label>                            
                         <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)">
@@ -28,7 +29,7 @@
                             @endforeach
                         </select>
                         <input id="valorDeSelect2" type="text" name="cuenta" value="">
-                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>                            
+                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria:</label>                            
                         <select name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
                         <option value=""></option> 
                             @foreach( $padre as $key => $value )
@@ -43,7 +44,7 @@
                         <label for="tasa" class="col-md-4 col-form-label text-md-right">Monto:</label>
                         <input name='monto'  type="text" class="form-control" aria-label="" >
 
-                    </div>
+                   
 
                         
                         <button  type="submit"  id='agregar'  class="btn btn-primary">Agregar</button>
@@ -51,7 +52,6 @@
                     </div>
                 </form>
                 
-
                 <hr>
             
                 <table id='tabla' class="table table-sm table-light">
@@ -73,6 +73,7 @@
                      
                             @foreach($transaccionesl  as $transacc)
                             <tr>
+                                
                                 <td name='id'>{{$transacc->id}}</td>
                                 <td name='url'>{{$transacc->tipo}}</td>
                                 <td name='format'>{{$transacc->fecha}}</td>
@@ -82,18 +83,14 @@
                                 <td name='sado'>{{$transacc->monto}}</td>
                                 
 
+                                
                                 <td>
-                                <form method="POST" class="form-delete" action="{{ route('transacciones.destroy', $transacc->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <a type="submit" href="{{ route('transaccions.delete',$transacc->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 
-                                        <a type="submit"href="{{ route('transacciones.edit',$transacc->id)}}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
-                   
-                                       
-                                    </form>
-                                    
+                                    <a type="submit"href="{{ route('transaccions.editar',$transacc->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>  
                                 </td>
+                                    
+                               
                              </tr>
                             @endforeach
                 
