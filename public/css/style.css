@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+
+body{
+    /* height: 100vh; */
+    background: #0062E6 !important;
+    /* display: flex;
+    flex-direction: column; 
+    align-items:center;
+    justify-content:center;*/
+}
+
+.card{
+    overflow: hidden;
+    border: 0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0,0,0,0.1);
+    /* margin-top: 10%; */
+}
+
+.img-left{
+    width: 50%;
+    background: url('../images/finances.svg') center;
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+.card-body{
+    padding: 2rem;
+}
+
+.title{
+    margin-bottom:2rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-input{
+    position: relative;
+}
+.form-input input{
+    width:100%;
+    height: 45px;
+    padding-left: 40px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid #00000020;
+    border-radius: 50px;
+    outline: none;
+    background:transparent;
+}
+.form-input span{
+    position: absolute;
+    top: 15px;
+    padding-left: 15px;
+    color: #007bff;
+}
+
+.form-input input::placeholder{
+    color:black;
+    padding-left: 0px;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-input input:focus, .form-input input:valid{
+    border: 2px solid #007bff;
+}
+
+.form-input input:focus::placeholder{
+    color:#454b69;
+}
+
+.form-box button[type="submit"]{
+    margin-top: 10px;
+    border:none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #007bff;
+    color:#fff;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: .05rem;
+    transition: 0.5s;
+    padding:12px;
+}
+.form-box button[type="submit"]:hover{
+    background:#0069d9;
+}
+
+.form-box .btn-social{
+    border:0;    
+    font-family: "Poppins", sans-serif;
+}
+.btn-social > :first-child {
+    width: 32px;
+    font-size: 1.6em;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+.btn-social i{
+    border: 0px !important;
+    width: 32px !important;
+    top: 6px; 
+    left: 5px !important;    
+}
+
+
+.form-box .btn-google{
+    border:none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #e36657;
+    color:#fff;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: .05rem;
+    transition: 0.5s;
+    padding:12px;
+}
+.form-box .btn-facebook{
+    border:none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #4f6ca8;
+    color:#fff;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: .05rem;
+    transition: 0.5s;
+    padding:12px;
+}
+
+.form-box .btn-google:hover{
+    background:#f57668;
+    color:#fff;
+}
+.form-box .btn-facebook:hover{
+    background:#769deb;
+    color:#fff;
+}
+.form-box svg{
+    padding-right: 10px;
+}
+label{
+    font-family: "Poppins", sans-serif;
+}
+.register-link{
+    color:#007bff;
+    font-family: "Poppins", sans-serif;
+}
+.register-link:hover{
+    color:#0069d9;
+    text-decoration: none;
+}
