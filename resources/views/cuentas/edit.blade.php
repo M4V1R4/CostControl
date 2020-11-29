@@ -23,13 +23,23 @@
                   <input name='nombre'  type="text" class="form-control"  value="{{$cuenta->nombre}}">
                   <label for="simbolo" class="col-md-4 col-form-label text-md-right">Moneda:</label>
                   
-                  <select  selected="selected" name="moneda_id" value="{{$cuenta->moneda_id}}">
+                  <select  selected="selected"name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
                         @foreach( $monedas as $key => $value )
 
                         <option value="{{ $value }}">{{ $key}}</option>
+                        <?php
+                          if ($cuenta->moneda_id == $value) {
 
+                               $moneda_id = $key;
+                          }
+                    ?>
+                        
                         @endforeach
                     </select>
+                    
+                   
+                    
+                   <input id="valorDeSelect" type="text" name="moneda_id" value="{{$moneda_id}}">
                   
                   <label for="desc" class="col-md-4 col-form-label text-md-right">Descripcion:</label>
                   <input name='descripcion'  type="text" class="form-control" value="{{$cuenta->descripcion}}">
@@ -51,4 +61,17 @@
   </div>
 
   </form>
+
+
+  
+ <script>
+    var valorEnvio = ""
+
+    function selecOp(valor){
+    document.getElementById("valorDeSelect").value = valor
+    }
+
+
+
+</script>
 @endsection

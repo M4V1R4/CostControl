@@ -24,6 +24,11 @@ Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::resource('transaccions','TransaccionController');
 Route::resource('monedas','MonedaController');
 Route::resource('cuentas','CuentaController');
+Route::resource('categorias','CategoriaController');
+
+Route::get('/transaccions/delete/{id}', 'TransaccionController@destroy')->name('transaccions.delete');
+
+Route::get('/transaccions/{id}/edit', 'TransaccionController@edit')->name('transaccions.editar');
