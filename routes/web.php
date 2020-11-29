@@ -26,7 +26,9 @@ Route::resource('transaccions','TransaccionController');
 Route::resource('monedas','MonedaController');
 Route::resource('cuentas','CuentaController');
 Route::resource('categorias','CategoriaController');
+Route::resource('reportes','ReportesController');
 
+Route::get('/reportes/{value}', 'ReportesController@reporte1')->name('reportes.reporte1');
 Route::get('/transaccions/delete/{id}', 'TransaccionController@destroy')->name('transaccions.delete');
-
 Route::get('/transaccions/{id}/edit', 'TransaccionController@edit')->name('transaccions.editar');
+Route::put('/transaccions/{id}/update', 'TransaccionController@update')->name('transaccions.update');
