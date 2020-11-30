@@ -11,18 +11,17 @@ class ReportesController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    
+    public function index()
+    {
+        $cuentas=Cuenta::pluck('id','nombre');
+        return view('reportes.reporte1' ,compact('cuentas'));
+    }
     public function index1()
     {
         $cuentas=Cuenta::pluck('id','nombre');
         return view('reportes.reporte1' ,compact('cuentas'));
     }
+
     public function index2()
     {
         $cuentas=Cuenta::pluck('id','nombre');
@@ -50,16 +49,26 @@ class ReportesController extends Controller
     }
 
 
-    public function reporte1(Cuenta $cuenta){
-        echo 'Holaaa';
-        echo $cuenta;
-        /*$cuenta = Cuenta::where('id', $id)->get();
+    public function show1(Request $request){
 
-        foreach( $cuenta as $key ){
-            $saldo= $key->saldoInicial;
-  
-        }
-        return $saldo;*/
+
+        $cuent = Cuenta::where('id', $request->cuenta)->get();
+
+        $cuentas=Cuenta::pluck('id','nombre');
+
+        return view('reportes.reporte1' ,compact('cuent','cuentas'));
 
     }
+    public function show2(Request $request){
+
+
+        $cuent = Cuenta::where('id', $request->cuenta)->get();
+
+        $cuentas=Cuenta::pluck('id','nombre');
+
+        return view('reportes.reporte1' ,compact('cuent','cuentas'));
+
+    }
+
+
 }
