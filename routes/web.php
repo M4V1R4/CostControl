@@ -26,7 +26,13 @@ Route::resource('transaccions','TransaccionController');
 Route::resource('monedas','MonedaController');
 Route::resource('cuentas','CuentaController');
 Route::resource('categorias','CategoriaController');
-Route::resource('reportes','ReportesController');
+Route::resource('reporte1','ReportesController@index1');
+Route::resource('reporte2','ReportesController@index2');
+Route::resource('reporte3','ReportesController@index3');
+Route::resource('reporte4','ReportesController@index4');
+Route::resource('reporte5','ReportesController@index5');
+Route::resource('reporte6','ReportesController@index6');
+
 
 Route::get('/reportes/{value}', 'ReportesController@reporte1')->name('reportes.reporte1');
 Route::get('/transaccions/delete/{id}', 'TransaccionController@destroy')->name('transaccions.delete');

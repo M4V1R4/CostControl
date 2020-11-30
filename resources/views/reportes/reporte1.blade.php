@@ -29,7 +29,7 @@
                     <input id="date" type="date">     
                     <input id="date" type="date">              
 
-                        <button type="submit" onclick="{{ route('reportes.reporte1',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit" onclick="{{ route('reportes.reporte2',$value) }}" class="btn btn-info"   >Consultar</button>
 
                     </form>
 
@@ -38,7 +38,7 @@
                     <h6>Ultimo Mes:</h6>
                                   
 
-                        <button type="submit" onclick="{{ route('reportes.reporte1',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit" onclick="{{ route('reportes.reporte3',$value) }}" class="btn btn-info"   >Consultar</button>
 
                     </form>
 
@@ -47,7 +47,7 @@
                     <h6>Ultimo Año:</h6>
                                   
 
-                        <button type="submit" onclick="{{ route('reportes.reporte1',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit" onclick="{{ route('reportes.reporte4',$value) }}" class="btn btn-info"   >Consultar</button>
 
                     </form>
 
@@ -57,7 +57,7 @@
                                 
                     <input id="date" type="">  
 
-                        <button type="submit" onclick="{{ route('reportes.reporte1',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit" onclick="{{ route('reportes.reporte5',$value) }}" class="btn btn-info"   >Consultar</button>
 
                     </form>
 
@@ -65,7 +65,7 @@
                     
                     <h6>Año:</h6>   
 
-                        <button type="submit" onclick="{{ route('reportes.reporte1',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit" onclick="{{ route('reportes.reporte6',$value) }}" class="btn btn-info"   >Consultar</button>
 
                     </form>
                     </div>
