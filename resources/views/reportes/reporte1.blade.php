@@ -23,7 +23,9 @@
                                                 
                         
                         <button  type="submit"  id='agregar'  class="btn btn-primary">Consultar</button>
-                        @foreach( $cuent as $key  )
+                       
+                        
+                        @foreach($cuent as $key  )
                         <label for="simbolo" disabled class="col-md-4 col-form-label text-md-right" >Saldo {{$key->nombre}}</label>
                         <input name='simbolo' disabled type="text" class="form-control" value='{{$key->saldoInicial}}' aria-label="" >
 

@@ -35,3 +35,5 @@ Route::put('/transaccions/{id}/update', 'TransaccionController@update')->name('t
 
 Route::post('/reporte1', 'ReportesController@show1')->name('reporte1.consultar');
 Route::post('/reporte2', 'ReportesController@show2')->name('reporte2.consultar');
+Route::post('/reporte5', 'ReportesController@show5')->name('reporte5.consultar');
+Route::post('/reporte6', 'ReportesController@show6')->name('reporte6.consultar');
