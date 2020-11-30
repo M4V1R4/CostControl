@@ -12,7 +12,7 @@
                     
                     <h6>Año:</h6>   
 
-                        <button type="submit" onclick="{{ route('reportes.reporte6',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit"  class="btn btn-info"   >Consultar</button>
 
                     </form>
                     </div>

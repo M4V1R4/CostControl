@@ -23,51 +23,7 @@
                     </form> 
 
                     
-                    <form  method="GET"> 
-                    <h4>Sumatoria de gastos e ingresos</h4>
-                    <h6>Entre 2 fechas:</h6>
-                    <input id="date" type="date">     
-                    <input id="date" type="date">              
-
-                        <button type="submit" onclick="{{ route('reportes.reporte2',$value) }}" class="btn btn-info"   >Consultar</button>
-
-                    </form>
-
-                    <form  method="GET"> 
                     
-                    <h6>Ultimo Mes:</h6>
-                                  
-
-                        <button type="submit" onclick="{{ route('reportes.reporte3',$value) }}" class="btn btn-info"   >Consultar</button>
-
-                    </form>
-
-                    <form  method="GET"> 
-                    
-                    <h6>Ultimo Año:</h6>
-                                  
-
-                        <button type="submit" onclick="{{ route('reportes.reporte4',$value) }}" class="btn btn-info"   >Consultar</button>
-
-                    </form>
-
-                    <form  method="GET"> 
-                    
-                    <h6>Mes:</h6>
-                                
-                    <input id="date" type="">  
-
-                        <button type="submit" onclick="{{ route('reportes.reporte5',$value) }}" class="btn btn-info"   >Consultar</button>
-
-                    </form>
-
-                    <form  method="GET"> 
-                    
-                    <h6>Año:</h6>   
-
-                        <button type="submit" onclick="{{ route('reportes.reporte6',$value) }}" class="btn btn-info"   >Consultar</button>
-
-                    </form>
                     </div>
                 </div>
             </div>

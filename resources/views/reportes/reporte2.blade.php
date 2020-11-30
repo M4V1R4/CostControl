@@ -16,7 +16,7 @@
                     <label for="tasa" class="col-md-4 col-form-label text-md-right">Segunda fecha:</label>    
                     <input id="date" type="date">              
 
-                        <button type="submit" onclick="{{ route('reportes.reporte2',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit"  class="btn btn-info"   >Consultar</button>
 
                     </form>
 

@@ -27,8 +27,6 @@
                 </div>
                 </form>
                 
-
-                <hr>
             
                 <table id='tabla' class="table table-sm table-light">
                     <thead>

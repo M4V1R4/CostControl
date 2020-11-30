@@ -14,7 +14,7 @@
                                 
                     <input id="date" type="">  
 
-                        <button type="submit" onclick="{{ route('reportes.reporte5',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit"  class="btn btn-info"   >Consultar</button>
 
                     </form>
 

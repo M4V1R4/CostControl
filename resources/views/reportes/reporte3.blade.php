@@ -13,7 +13,7 @@
                     <h6>Ultimo Mes:</h6>
                                   
 
-                        <button type="submit" onclick="{{ route('reportes.reporte3',$value) }}" class="btn btn-info"   >Consultar</button>
+                        <button type="submit"  class="btn btn-info"   >Consultar</button>
 
                     </form>
 
