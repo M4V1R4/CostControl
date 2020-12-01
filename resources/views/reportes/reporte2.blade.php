@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('adminlte::page')
+@section('title','Entre dos fechas')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

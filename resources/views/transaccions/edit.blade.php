@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('title','Editar transacciones')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @section('content')
 
   <form action="{{ route('transaccions.update',$transacc->id) }}" method="POST">
