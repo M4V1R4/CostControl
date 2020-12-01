@@ -1,46 +1,63 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('title','Editar monedas')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @section('content')
 
-  <form action="{{ route('monedas.update',$moneda->id) }}" method="POST">
+<form action="{{ route('monedas.update',$moneda->id) }}" method="POST">
 
   @csrf
 
   @method('PUT')
-  
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar Moneda</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-                  <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre:</label>
-                  <input name='nombre'  type="text" class="form-control"  value="{{$moneda->nombre}}">
-                  <label for="simbolo" class="col-md-4 col-form-label text-md-right">Simbolo:</label>
-                  <input name='simbolo'  type="text" class="form-control"value="{{$moneda->simbolo}}" >
-                  <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion:</label>
-                  <input name='descripcion'  type="text" class="form-control" value="{{$moneda->descripcion}}">
-                  <label for="tasa" class="col-md-4 col-form-label text-md-right">Tasa:</label>
-                  <input name='tasa'  type="text" class="form-control" value="{{$moneda->tasa}}">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-warning" >Editar <i class="fa fa-edit"></i></button>
 
-          <a href="{{ route('monedas.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
-          
-        
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Editar moneda</h1>
         </div>
-        
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                <form>
+                  <div class="form">
+                    <div class="form-field">
+                          <input name='nombre'  type="text" class="input-text"  value="{{$moneda->nombre}}" required>
+                          <span>Nombre corto</span>   
+                    </div>
+                    <div class="form-field">
+                      <input name='simbolo'  type="text" class="input-text" value="{{$moneda->simbolo}}" required>
+                      <span>Símbolo</span>
+                    </div>
+                    <div class="form-field">
+                      <input name='descripcion'  type="text" class="input-text" value="{{$moneda->descripcion}}" required>
+                      <span>Descripción</span>
+                    </div>
+                    <div class="form-field">
+                      <input name='tasa'  type="text" class="input-text" value="{{$moneda->tasa}}" required>
+                      <span>Tasa</span>
+                    </div>
+                    
+                  </div>
+                </form>
+                <div class="d-flex justify-content-center mt-5">
+                  <div class="mr-1">
+                    <button type="submit" class="btn btn-success btn-crud" >Editar <i class="fa fa-edit"></i></button>
+                  </div>
+                  <div class="ml-1">
+                    <a href="{{ route('monedas.index') }}" class="btn btn-danger btn-crud" >Cancelar <i class="fa fa-ban"> </i></a>
+                  </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
+
+
+    
   </div>
 
-  </form>
+</form>
 @endsection
