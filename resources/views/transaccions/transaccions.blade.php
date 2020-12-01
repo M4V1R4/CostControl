@@ -1,15 +1,18 @@
-@extends('layouts.app')
-
+@extends('adminlte::page')
+@section('title','Transacciones')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="col-md-20">
-                
-                    
-                <form action="{{ route('transaccions.store') }}" method="POST"> 
-
-
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Transacciones</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ route('transaccions.store') }}" method="POST"> 
                     @csrf
                     <div class="input-group">
                     
@@ -92,50 +95,38 @@
                 <table id='tabla' class="table table-sm table-light">
                     <thead>
                         <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Cuenta</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Detalle</th>
-                        <th scope="col">Monto</th>
-                        
+                            <th scope="col">ID</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Cuenta</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Detalle</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Opciones</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach($transaccionesl  as $transacc)
+                        <tr>
+                            <td name='id'>{{$transacc->id}}</td>
+                            <td name='url'>{{$transacc->tipo}}</td>
+                            <td name='format'>{{$transacc->fecha}}</td>
+                            <td name='s'>{{$transacc->cuenta}}</td>
+                            <td name='sa'>{{$transacc->categoria}}</td>
+                            <td name='salal'>{{$transacc->detalle}}</td>
+                            <td name='sado'>{{$transacc->monto}}</td>
+                            <td>
+                                <a type="submit" href="{{ route('transaccions.delete',$transacc->id) }}" class="btn btn-danger btn-crud"><i class="fa fa-trash"></i></a>
 
-                   
-                        <tbody>
-                     
-                            @foreach($transaccionesl  as $transacc)
-                            <tr>
-                                
-                                <td name='id'>{{$transacc->id}}</td>
-                                <td name='url'>{{$transacc->tipo}}</td>
-                                <td name='format'>{{$transacc->fecha}}</td>
-                                <td name='s'>{{$transacc->cuenta}}</td>
-                                <td name='sa'>{{$transacc->categoria}}</td>
-                                <td name='salal'>{{$transacc->detalle}}</td>
-                                <td name='sado'>{{$transacc->monto}}</td>
-                                
-
-                                
-                                <td>
-                                    <a type="submit" href="{{ route('transaccions.delete',$transacc->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-
-                                    <a type="submit"href="{{ route('transaccions.editar',$transacc->id) }}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>  
-                                </td>
-                                    
-                               
-                             </tr>
-                            @endforeach
-                
-                        </tbody>
+                                <a type="submit"href="{{ route('transaccions.editar',$transacc->id) }}" class="btn btn-success btn-crud" ><i class="fa fa-edit"></i></a>  
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
-    <div>
-        
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    </div>
 
 <script type="text/javascript">
 
@@ -183,10 +174,4 @@
     } 
 
 </script>
-
-
-
-
-
-
 @endsection

@@ -32,7 +32,7 @@
                     <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria Padre:</label>                            
                         <select name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
                         <option value=""></option> 
-                            @foreach( $padre as $key => $value )
+                            @foreach( $sub as $key => $value )
 
                                 <option value="{{ $key }}">{{ $key}}</option> 
 
