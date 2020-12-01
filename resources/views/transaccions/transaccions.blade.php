@@ -14,63 +14,85 @@
                 <div class="card-body">
                     <form action="{{ route('transaccions.store') }}" method="POST"> 
                     @csrf
-                        <div class="form">
-                            <div class="row">
-                                <div class="col-md-6 form-field">
-                                    <select name='tipo' class="input-select" required>
-                                        <option  value selected disabled hidden></option> 
-                                        <option>Ingreso</option>
-                                        <option>Gasto</option> 
-                                        <option>Traslado</option>
-                                    </select>
-                                    <span>Tipo</span>
-                                </div>
-                                <div class="col-md-6 form-field">
-                                <input class="form-control" type="date" value="" id="fecha" name="fecha" class="input-text" required>
-                                <span>Fecha</span>
-                                </div>
-                                <div class="col-md-6 form-field">
-                                    <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)" class="input-select" required>
-                                        <option  value selected disabled hidden></option>
-                                        @foreach( $cuentas as $key => $value )
-                                            <option value="{{ $key }}">{{ $key}}</option> 
-                                        @endforeach
-                                    </select>
-                                    <span>Cuenta</span>
-                                </div>
-                                <div class="col-md-6 form-field">
-                                    <select name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)" class="input-select" required>
-                                        <option  value selected disabled hidden></option> 
-                                        @foreach( $padre as $key => $value )
-                                            <option value="{{ $key }}">{{ $key}}</option>
-                                        @endforeach
-                                    </select>
-                                    <span>Categoría</span>
-                                </div>
-                                <div class="col-md-6 form-field">
-                                    <input name='detalle'  type="text" class="input-text" required>
-                                    <span>Detalle</span>
-                                </div>
-                                <div class="col-md-6 form-field">
-                                    <input name='monto'  type="text" class="input-text" required>
-                                    <span>Monto</span>
-                                </div>
-                            </div>
-                            <div class="col-md-12 ">
-                                <div class="d-flex justify-content-center">
-                                    <button  type="submit"  id='agregar'  class="btn btn-primary">Agregar</button>
-                                </div>
-                            </div>
+                    <div class="input-group">
+                    
+                    
+                    <div class="container" ng-app="app">
+                    <div class="row" ng-controller="ctrl">
+                        <div class="col-md-12">
+                        <div class="form-group col-md-6">
+                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Tipo:</label> 
+                            <select class="form-control"onchange="selecOp1(event.target.value)" name='tipo' ng-model="selectOption" ng-options="o.value as o.name for o in opciones"></select>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <div class="table-responsive-md">
-                <table id='tabla' class="table table-striped table-hover content-table text-center">
+                        
+                        <div class="form-group col-md-6" ng-if="selectOption == 0" ng-cloak>
+                            <label class="control-label">Cuenta a depositar:</label>
+                            <select  id="no_conformidad" onchange="selecOp4(event.target.value)">
+                            <option value=""></option> 
+                            @foreach( $cuentas as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        <input id="valorDeSelect4" type="text" name="cuenta2" value="">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Cuenta:</label>                            
+                        <select name="no_conformidad" id="no_conformidad" onchange="selecOp2(event.target.value)">
+                        <option value=""></option> 
+                            @foreach( $cuentas as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>
+                        <input id="valorDeSelect2" type="text" name="cuenta" value="">
+
+                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria:</label>
+                        <select id="test" name="form_select" onchange="selecOp(event.target.value), showDiv(this)" >
+                        <option value=""></option> 
+                        <option value="1">SubCategorias</option> 
+                            @foreach( $padre as $key => $value )
+
+                                <option value="{{ $key }}">{{ $key}}</option> 
+
+                            @endforeach
+                        </select>                            
+                         
+                        <input id="valorDeSelect" type="text" name="categoria" >
+
+                        <div id="hidden_div" style="display:none;">
+                            <select onchange="selecOp3(event.target.value)">
+                                <option value=""></option> 
+                                    @foreach( $sub as $key => $value )
+
+                                        <option value="{{ $key }}">{{ $key}}</option> 
+
+                                    @endforeach
+                            </select>
+                        <input id="valorDeSelect3" type="text" name="subcategoria" value="">
+                        </div>
+                       
+                        <label for="descripcion" class="col-md-4 col-form-label text-md-right">Detalle:</label>
+                        <input name='detalle'  type="text" class="form-control" aria-label="" >
+                        <label for="tasa" class="col-md-4 col-form-label text-md-right">Monto:</label>
+                        <input name='monto'  type="text" class="form-control" aria-label="" >
+
+                   
+
+                        
+                        <button  type="submit"  id='agregar'  class="btn btn-primary">Agregar</button>
+                    </div>
+                    </div>
+                </form>
+                
+                <hr>
+            
+                <table id='tabla' class="table table-sm table-light">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -106,20 +128,50 @@
         </div>
     </div>
 
-<script>
+<script type="text/javascript">
+
     var valorEnvio = ""
-
     function selecOp(valor){
-    document.getElementById("valorDeSelect").value = valor
+     document.getElementById("valorDeSelect").value = valor
     }
-
+    var valorEnvio1 = ""
+    function selecOp1(valor){
+    document.getElementById("valorDeSelect1").value = valor
+    }
  
     var valorEnvio2 = ""
-
     function selecOp2(valor){
     document.getElementById("valorDeSelect2").value = valor
     }
 
+    var valorEnvio3 = ""
+    function selecOp3(valor){
+    document.getElementById("valorDeSelect3").value = valor
+    }
+    var valorEnvio4 = ""
+    function selecOp4(valor){
+    document.getElementById("valorDeSelect4").value = valor
+    }
+
+
+    var app = angular.module('app', []);
+    app.controller('ctrl', ['$scope', function($scope){
+    $scope.opciones = [
+    { value:0, name: 'Traslado' },
+    { value:1, name: 'Gasto' },
+    { value:2, name: 'Ingreso' }
+    ]
+    $scope.selectOption = {};
+    }]);
+
+
+    function showDiv(select){
+        if(select.value==1){
+        document.getElementById('hidden_div').style.display = "block";
+        } else{
+        document.getElementById('hidden_div').style.display = "none";
+        }
+    } 
 
 </script>
 @endsection
