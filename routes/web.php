@@ -18,6 +18,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('auth/google', 'GoogleController@redirectToProvider')->name('google.login');
+Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('transaccions','TransaccionController');
 Route::resource('monedas','MonedaController');
