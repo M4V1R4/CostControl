@@ -15,11 +15,10 @@ class ReportesController extends Controller
         $this->middleware('auth');
         $cuent;
         $info;
+        $total;
     }
     public function index()
     {   
-        
-      
     }
     public function index1()
     {   $cuent = [];
@@ -52,14 +51,15 @@ class ReportesController extends Controller
         return view('reportes.reporte4' ,compact('info','total'));
     }
     public function index5()
-    {
-        $cuentas=Cuenta::pluck('id','nombre');
-        return view('reportes.reporte5' ,compact('cuentas'));
+    {   
+        $info =[];
+        
+        return view('reportes.reporte5' ,compact('info'));
     }
     public function index6()
     {
-        $cuentas=Cuenta::pluck('id','nombre');
-        return view('reportes.reporte6' ,compact('cuentas'));
+        $info =[];
+        return view('reportes.reporte6' ,compact('info'));
     }
 
 
@@ -76,25 +76,55 @@ class ReportesController extends Controller
     public function show2(Request $request){
         $id = auth()->user()->id;
         $total= DB::table('transaccions')->whereBetween('fecha', array($request->fecha1, $request->fecha2))->sum('monto');
+        if($total == 0 ){
+            $info = [];
+            return view('reportes.reporte2' ,compact('total','info'));
+        }
+        else{
         $info =Transaccion::All();
         $info=Transaccion::select('id','tipo','categoria','detalle')->where('user_id', $id)->get();
         return view('reportes.reporte2' ,compact('total','info'));
+        }
+       
 
     }
     public function show5(Request $request){
+        
+        
+
+        $mfecha = $request->mes;
+        
         $id = auth()->user()->id;
-        $total= DB::table('transaccions')->whereBetween('fecha', array($request->fecha1, $request->fecha2))->sum('monto');
+        $total= Transaccion::whereMonth('fecha', '=',$mfecha)->sum('monto');
+        if($total == 0 ){
+            $info = [];
+            return view('reportes.reporte5' ,compact('total','info'));
+        }
+        else{
         $info =Transaccion::All();
-        $info=Transaccion::select('id','tipo','categoria','detalle')->where('user_id', $id)->get();
-        return view('reportes.reporte2' ,compact('total','info'));
+        $info =Transaccion::where('user_id', $id)->whereMonth('fecha', '=', $mfecha)->get();
+        return view('reportes.reporte5' ,compact('info','total'));
+        }
+
+        
+        
 
     }
     public function show6(Request $request){
+
+        $yfecha = $request->anno;
         $id = auth()->user()->id;
-        $total= DB::table('transaccions')->whereBetween('fecha', array($request->fecha1, $request->fecha2))->sum('monto');
+        $total= Transaccion::where('user_id', $id)->whereYear('fecha', '=',$yfecha)->sum('monto');
+        if($total == 0 ){
+            $info = [];
+            return view('reportes.reporte6' ,compact('total','info'));
+        }
+        else{
         $info =Transaccion::All();
-        $info=Transaccion::select('id','tipo','categoria','detalle')->where('user_id', $id)->get();
-        return view('reportes.reporte2' ,compact('total','info'));
+        $info =Transaccion::where('user_id', $id)->whereYear('fecha', '=', date('Y'))->get();
+        return view('reportes.reporte6' ,compact('total','info'));
+        }
+        
 
     }
 
