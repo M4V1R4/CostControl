@@ -35,11 +35,11 @@
                         <label>O iniciar con</label>
                     </div>
                     <div class="row mb-3">
-                        <a class="btn btn-block btn-social btn-google" href="{{ route('google.login') }}">
+                        <a class="btn btn-block btn-social btn-google" href="{{url('login/google')}}">
                         <i class="fa fa-google"></i>Google</a>
                     </div>
                     <div class="row mb-3">
-                        <a class="btn btn-block btn-social btn-facebook" href="#">
+                        <a class="btn btn-block btn-social btn-facebook" href="{{url('login/facebook')}}">
                         <i class="fa fa-facebook"></i>Facebook</a>
                     </div>
                     <hr class="my-4">
