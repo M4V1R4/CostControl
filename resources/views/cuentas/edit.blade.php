@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('title','Editar cuentas')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @section('content')
 
   <form action="{{ route('cuentas.update',$cuenta->id) }}" method="POST">
@@ -6,72 +8,67 @@
   @csrf
 
   @method('PUT')
-  
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar Cuenta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Editar cuentas</h1>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-                  <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre:</label>
-                  <input name='nombre'  type="text" class="form-control"  value="{{$cuenta->nombre}}">
-                  <label for="simbolo" class="col-md-4 col-form-label text-md-right">Moneda:</label>
-                  
-                  <select  selected="selected"name="no_conformidad" id="no_conformidad" onchange="selecOp(event.target.value)">
-                        @foreach( $monedas as $key => $value )
-
-                        <option value="{{ $value }}">{{ $key}}</option>
-                        <?php
-                          if ($cuenta->moneda_id == $value) {
-
-                               $moneda_id = $key;
-                          }
-                    ?>
-                        
-                        @endforeach
-                    </select>
-                    
-                   
-                    
-                   <input id="valorDeSelect" type="text" name="moneda_id" value="{{$moneda_id}}">
-                  
-                  <label for="desc" class="col-md-4 col-form-label text-md-right">Descripcion:</label>
-                  <input name='descripcion'  type="text" class="form-control" value="{{$cuenta->descripcion}}">
-                  <label for="tasa" class="col-md-4 col-form-label text-md-right">Saldo Inicial:</label>
-                  <input name='saldoInicial'  type="text" class="form-control" value="{{$cuenta->saldoInicial}}">
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                  <form>
+                    <div class="form">
+                      <div class="form-field">
+                      <input name='nombre'  type="text" class="input-text"  value="{{$cuenta->nombre}}">
+                        <span>Nombre corto</span>
+                      </div>
+                      <div class="form-field">
+                        <input name='descripcion' type="text" class="input-text" value="{{$cuenta->descripcion}}">
+                        <span>Descripción</span>
+                      </div>
+                      <div class="form-field">
+                        <input name='saldoInicial'  type="text" class="input-text" value="{{$cuenta->saldoInicial}}">
+                        <span>Saldo inicial</span>
+                      </div>
+                      <div class="form-field">
+                        <select  selected="selected" name="moneda_id" id="moneda_id" onchange="selecOp(event.target.value)" class="input-select mt-4" required>
+                          @foreach( $monedas as $key => $value )
+                            <option value="{{ $value }}" @if($cuenta->moneda_id === $value) selected='selected' @endif>{{$key}}</option>
+                          @endforeach
+                          </select>
+                        <span>Moneda</span>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="d-flex justify-content-center mt-5">
+                    <div class="mr-1">
+                      <button type="submit" class="btn btn-success btn-crud" >Editar <i class="fa fa-edit"></i></button>
+                    </div>
+                    <div class="ml-1">
+                      <a href="{{ route('cuentas.index') }}" class="btn btn-danger btn-crud" >Cancelar <i class="fa fa-ban"> </i></a>
+                    </div>
+                  </div>
+                </div>
             </div>
-          </form>
         </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-warning" >Editar <i class="fa fa-edit"></i></button>
+      </div>
+  </div>
 
-          <a href="{{ route('cuentas.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
-          
+    
         
-        </div>
         
       </div>
     </div>
   </div>
 
   </form>
-
-
-  
  <script>
     var valorEnvio = ""
 
     function selecOp(valor){
     document.getElementById("valorDeSelect").value = valor
     }
-
-
-
 </script>
 @endsection
