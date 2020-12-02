@@ -7,7 +7,7 @@ use App\Cuenta;
 use App\Transaccion;
 use Carbon\Carbon;
 use App\Http\Controllers\Auth;
-use Illuminate\Support\Facades\DB;
+
 class ReportesController extends Controller
 {
     public function __construct()
@@ -61,12 +61,14 @@ class ReportesController extends Controller
         $info =[];
         return view('reportes.reporte6' ,compact('info'));
     }
-    public function index7()
-    {
+    public function index7(){
         $info =Transaccion::All();
-        //$info=Transaccion::select('categoria',' count(*)')->groupBy('categoria')->having('count(*)', '>', 0)->get();
+        $info=Transaccion::pluck('categoria','monto');
+        //SELECT categoria, count(*) FROM transaccions GROUP BY categoria
+        $info=Transaccion::pluck('categoria');
+        //return response(json_encode($info),200)->header('content-type','text/plain');
+        return view('reportes.graph',compact('info'));
         
-        return response(json_encode($info),200)->header('Content-type','text/plain');
     }
 
 
