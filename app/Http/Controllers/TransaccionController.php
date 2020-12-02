@@ -85,7 +85,7 @@ class TransaccionController extends Controller
         
         }
         
-        if($request->tipo == 'number:1'){
+        if($request->tipo == 'Gasto'){
 
             
             $cuenta = Cuenta::where('nombre',$nombre)->decrement('saldoInicial',$request->monto);
@@ -107,7 +107,7 @@ class TransaccionController extends Controller
             return back();
             
         }
-        elseif($request->tipo == 'number:2'){
+        elseif($request->tipo == 'Ingreso'){
 
             $cuenta = Cuenta::where('nombre',$nombre)->increment('saldoInicial',$request->monto);
             $transacciones = new Transaccion;
@@ -128,7 +128,7 @@ class TransaccionController extends Controller
             return back();
             
         }
-        elseif ($request->tipo == 'number:0'){
+        elseif ($request->tipo == 'Traslado'){
 
             $cuenta1 = Cuenta::where('nombre',$nombre)->decrement('saldoInicial',$request->monto);
 
