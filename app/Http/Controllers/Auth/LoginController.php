@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
+use App\User;
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -41,7 +43,12 @@ class LoginController extends Controller
 
     public function redirectToProvider($driver)
     {
-        return Socialite::driver($driver)->redirect();
+        $drivers = ['facebook','google'];
+        if(in_array($driver,$drivers)){
+            return Socialite::driver($driver)->redirect();
+        }else{
+            return redirect()->route('login');
+        }
     }
 
     /**
@@ -49,10 +56,21 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback($driver)
+    public function handleProviderCallback(Request $request, $driver)
     {
-        $user = Socialite::driver($driver)->user();
-        dd($user);
-        // $user->token;
+        if($request->get('error')){
+            return redirect()->route('login');
+        }
+        
+        $userSocialite = Socialite::driver($driver)->user();
+        $user = User::where('email',$userSocialite->getEmail())->first();
+        if(!$user){
+            $user = User::create([
+                        'name' => $userSocialite->getName(),
+                        'email' => $userSocialite->getEmail(),
+                    ]);
+        }
+        auth()->login($user);
+        return redirect()->route('home');
     }
 }
