@@ -71,6 +71,17 @@ class TransaccionController extends Controller
     
     public function store(Request $request)
     {
+        $v = \Validator::make($request->all(), [
+            
+            'monto' => 'numeric|required|'
+        ]);
+
+        if ($v->fails())
+        {
+
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+
        
         // $now = new \DateTime();
         $id = auth()->user()->id; 

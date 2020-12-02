@@ -52,6 +52,18 @@ class MonedaController extends Controller
     public function store(Request $request)
     {
         
+     
+        $v = \Validator::make($request->all(), [
+            
+            'tasa' => 'numeric|required|'
+        ]);
+
+        if ($v->fails())
+        {
+
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+        
         $nuevoMoneda = new Moneda;
         $nuevoMoneda->nombre = $request->nombre;
         $nuevoMoneda->user_id = auth()->user()->id;
