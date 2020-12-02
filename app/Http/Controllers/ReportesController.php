@@ -63,8 +63,10 @@ class ReportesController extends Controller
     }
     public function index7()
     {
+        $info =Transaccion::All();
+        //$info=Transaccion::select('categoria',' count(*)')->groupBy('categoria')->having('count(*)', '>', 0)->get();
         
-        return view('reportes.graph');
+        return response(json_encode($info),200)->header('Content-type','text/plain');
     }
 
 

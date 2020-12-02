@@ -32,7 +32,7 @@ Route::get('reporte3','ReportesController@index3');
 Route::get('reporte4','ReportesController@index4');
 Route::get('reporte5','ReportesController@index5');
 Route::get('reporte6','ReportesController@index6');
-Route::get('graph','ReportesController@index7');
+Route::get('/graph','ReportesController@index7');
 Route::get('/transaccions/delete/{id}', 'TransaccionController@destroy')->name('transaccions.delete');
 Route::get('/transaccions/{id}/edit', 'TransaccionController@edit')->name('transaccions.editar');
 Route::put('/transaccions/{id}/update', 'TransaccionController@update')->name('transaccions.update');
