@@ -19,8 +19,8 @@
                                 <div class="col-md-6 form-field">
                                     <select name="catPadre" id="catPadre" class="input-select">
                                     <option value="N/A">N/A</option> 
-                                        @foreach($sub as $key => $value )
-                                            <option value="{{ $key }}">{{$key}}</option> 
+                                        @foreach($sub as $key )
+                                            <option value="{{ $key->descripcion }}">{{$key->descripcion}}</option> 
                                         @endforeach
                                     </select>
                                     <span>Categoría padre</span>

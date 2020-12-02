@@ -25,9 +25,12 @@ class TransaccionController extends Controller
         $id = auth()->user()->id;
         $transaccionesl= Transaccion::All();
         $transaccionesl = Transaccion::where('user_id', $id)->get();
-        $padre=Categoria::pluck('id','catPadre');
-        $sub=Categoria::pluck('id','descripcion');
-        $cuentas=Cuenta::pluck('id','nombre');
+        $padre =Categoria::All();
+        $padre = Categoria::where('user_id', $id)->get();
+        $sub=Categoria::All();
+        $sub=Categoria::where('user_id', $id)->get();
+        $cuentas =Cuenta::All();
+        $cuentas=Cuenta::where('user_id', $id)->get();
         return view('transaccions.transaccions', compact('transaccionesl','padre','sub','cuentas'));
         
          
@@ -206,10 +209,14 @@ class TransaccionController extends Controller
 
     public function edit($id)
     {    
+        $idU = auth()->user()->id; 
         $transacc = Transaccion::find($id);
-        $padre=Categoria::pluck('id','catPadre');
-        $sub=Categoria::pluck('id','descripcion');
-        $cuentas=Cuenta::pluck('id','nombre');
+        $padre =Categoria::All();
+        $padre = Categoria::where('user_id', $idU)->get();
+        $sub=Categoria::All();
+        $sub=Categoria::where('user_id', $idU)->get();
+        $cuentas =Cuenta::All();
+        $cuentas=Cuenta::where('user_id', $idU)->get();
         return view('transaccions.edit', compact('transacc','padre','sub','cuentas'));
     }
 

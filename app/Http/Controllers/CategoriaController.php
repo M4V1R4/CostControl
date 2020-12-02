@@ -27,9 +27,11 @@ class CategoriaController extends Controller
             $id = auth()->user()->id;
             $categoriasl =Categoria::All();
             $categoriasl = Categoria::where('user_id', $id)->get();
-            $padre=Categoria::pluck('id','catPadre');
-            $sub=Categoria::pluck('id','descripcion');
-            return view('categorias.categorias', compact('categoriasl','padre','sub'));
+            $padre =Categoria::All();
+            $padre = Categoria::where('user_id', $id)->get();
+            $sub=Categoria::All();
+            $sub=Categoria::where('user_id', $id)->get();
+            return view('categorias.categorias', compact('categoriasl','sub'));
             
              
         } 
@@ -90,9 +92,12 @@ class CategoriaController extends Controller
          * @return \Illuminate\Http\Response
          */
         public function edit(Categoria $categoria)
-    
-        {   $padre=Categoria::pluck('id','catPadre');
-            $sub=Categoria::pluck('id','descripcion');
+        { 
+            $id = auth()->user()->id;
+            $padre =Categoria::All();
+            $padre = Categoria::where('user_id', $id)->get();
+            $sub =Categoria::All();
+            $sub = Categoria::where('user_id', $id)->get();
             return view('categorias.edit', compact('categoria','padre','sub'));
         }
     

@@ -18,11 +18,12 @@
                                 <div class="row">
                                     <div class="col-md-6 form-field">
                                         <select name="cuenta" id="cuenta" class="input-select" required>
-                                            <option  value selected disabled hidden></option>
-                                            @foreach( $cuentas as $key => $value )
-                                                <option value="{{ $value }}">{{$key}}</option> 
-                                                
-                                            @endforeach
+                                        <option  value selected disabled hidden></option> 
+                                        @foreach( $cuentas as $key )
+
+                                            <option value="{{ $key->id}}">{{ $key->nombre}}</option> 
+
+                                        @endforeach
                                         </select>
                                         <span class="report">Cuenta</span>
                                     </div>

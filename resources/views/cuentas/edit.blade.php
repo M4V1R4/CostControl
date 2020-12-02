@@ -34,8 +34,8 @@
                       </div>
                       <div class="form-field">
                         <select  selected="selected" name="moneda_id" id="moneda_id" onchange="selecOp(event.target.value)" class="input-select mt-4" required>
-                          @foreach( $monedas as $key => $value )
-                            <option value="{{ $value }}" @if($cuenta->moneda_id === $value) selected='selected' @endif>{{$key}}</option>
+                          @foreach( $monedas as $key )
+                            <option value="{{ $key->id }}" @if($cuenta->moneda_id === $key->id) selected='selected' @endif>{{$key->nombre}}</option>
                           @endforeach
                           </select>
                         <span>Moneda</span>

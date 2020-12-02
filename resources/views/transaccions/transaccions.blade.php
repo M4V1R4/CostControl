@@ -35,8 +35,8 @@
                                     <select  id="cuenta2" name="cuenta2" class="input-select">
                                         <option value=""></option>
                                         <!-- <option  value selected disabled hidden></option> -->
-                                        @foreach( $cuentas as $key => $value )
-                                            <option value="{{ $key }}">{{ $key}}</option>
+                                        @foreach( $cuentas as $key)
+                                            <option value="{{ $key->nombre }}">{{ $key->nombre}}</option>
                                         @endforeach
                                     </select>
                                     <span>Cuenta a depositar</span>
@@ -46,9 +46,9 @@
                                 <div class="col-md-6 form-field">
                                     <select name="cuenta" id="cuenta" class="input-select" required>
                                         <option  value selected disabled hidden></option> 
-                                        @foreach( $cuentas as $key => $value )
+                                        @foreach( $cuentas as $key )
 
-                                            <option value="{{ $key }}">{{ $key}}</option> 
+                                            <option value="{{ $key->nombre}}">{{ $key->nombre}}</option> 
 
                                         @endforeach
                                     </select>
@@ -57,8 +57,8 @@
                                 <div class="col-md-6 form-field">
                                     <select name="categoria" id="categoria" class="input-select">
                                         <option value="N/A">N/A</option> 
-                                        @foreach($sub as $key => $value )
-                                            <option value="{{ $key }}">{{$key}}</option> 
+                                        @foreach($sub as $key )
+                                            <option value="{{ $key->descripcion }}">{{$key->descripcion}}</option> 
                                         @endforeach
                                     </select>
                                     <span>Categoría</span>

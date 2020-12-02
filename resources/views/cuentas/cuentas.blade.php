@@ -33,8 +33,8 @@
                                 <div class="col-md-6 form-field">
                                     <select  selected="selected" name="moneda_id" class="input-select" required>
                                         <option  value selected disabled hidden></option>
-                                        @foreach( $monedas as $key => $value )
-                                        <option value="{{ $value }}">{{ $key}}</option>
+                                        @foreach( $monedasl as $key)
+                                        <option value="{{ $key->id }}">{{ $key->nombre}}</option>
                                         @endforeach
                                     </select>
                                     <span>Moneda</span>
