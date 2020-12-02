@@ -24,11 +24,10 @@
                                     </div>
                                     <div class="col-md-6 form-field">
                                         <select name="simbolo" id="simbolo" class="input-select" required>
-                                            <option  value selected disabled hidden></option>    
+                                            <option  value selected disabled hidden></option>
                                             <option value="₡">₡</option>
                                             <option value="$">$</option>
                                             <option value="€">€</option>
-                                            <option value="¥">¥</option>
                                         </select> 
                                         <span>Símbolo</span>
                                     </div>

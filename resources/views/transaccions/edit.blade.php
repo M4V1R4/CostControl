@@ -8,75 +8,88 @@
     @csrf
 
     @method('PUT')
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Editar transacciones</h1>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                <form>
+                  <div class="form">
+                    <div class="row">
+                      <div class="form-field col-md-6">
+                        @php
+                          $array  = ["Ingreso","Gasto"];
+                        @endphp
+                        <select name="tipo" id="tipo" class="input-select mt-4" required>
+                          @foreach($array as $item)
+                              <option value="{{ $item }}" @if($transacc->tipo=== $item) selected='selected' @endif>{{ $item }}</option>
+                          @endforeach
+                        </select>
+                        <span>Tipo</span>
+                      </div>
+                      <div class="col-md-6 form-field">
+                          <input name='fecha' type="date" class="input-text" required value="{{$transacc->fecha}}" min="2010-01-01">    
+                          <span>Fecha</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-field col-md-6">
+                        <select  id="cuenta" name="cuenta" class="input-select mt-4" required> 
+                            @foreach( $cuentas as $key => $value )
+                                <option value="{{ $key }}"@if($transacc->cuenta === $key) selected='selected' @endif>{{ $key}}</option> 
+                            @endforeach
+                        </select>
+                        <span>Cuenta</span>
+                      </div>
+                      <div class="form-field col-md-6">
+                        <select name="categoria" id="categoria" class="input-select mt-4" required>
+                            @foreach($sub as $key => $value)
+                              <option value="{{ $key }}" @if($transacc->categoria === $key) selected='selected' @endif>{{$key}}</option>
+                            @endforeach
+                        </select>
+                        <span>Categoría</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-field col-md-6">
+                        <input name='detalle'  type="text" class="input-text" required value="{{$transacc->detalle}}">
+                        <span>Detalle</span>
+                      </div>
+                      <div class="form-field col-md-6">
+                        <input name='monto'  type="text" class="input-text" required value="{{$transacc->monto}}">
+                        <span>Monto</span>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <!-- ****** -->
+                    
+                                  
+                                <!-- <input id="valorDeSelect4" type="text" name="subcategoria" value="">
+                                </div>
+                                  <input id="valorDeSelect" type="text" name="categoria" value="{{$transacc->categoria}}"> -->
+
+                                 
+                  </form>
+                  <div class="d-flex justify-content-center mt-5">
+                    <div class="mr-1">
+                      <button type="submit" class="btn btn-success btn-crud" >Editar <i class="fa fa-edit"></i></button>
+                    </div>
+                    <div class="ml-1">
+                      <a href="{{ route('transaccions.index') }}" class="btn btn-danger btn-crud" >Cancelar <i class="fa fa-ban"> </i></a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
     
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Editar Categoria</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-              <div class="input-group">
-                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Tipo:</label> 
-                        <select  id="no_conformidad" onchange="selecOp3(event.target.value)">
-                            <option value=""></option> 
-                            <option>Ingreso</option>
-                            <option>Gasto</option>
-                            <option>Traslado</option>
-                          </select>
-                          <input id="valorDeSelect3" type="text" name="tipo" value="{{$transacc->tipo}}">
-                      <label for="nombre" class="col-md-4 col-form-label text-md-right">Cuenta:</label>                            
-                          <select  id="no_conformidad" onchange="selecOp2(event.target.value)">
-                          <option value=""></option> 
-                              @foreach( $cuentas as $key => $value )
-
-                                  <option value="{{ $key }}">{{ $key}}</option> 
-
-                              @endforeach
-                          </select>
-                          <input  id="valorDeSelect2" type="text" name="cuenta"value="{{$transacc->cuenta}}">
-                          <label for="nombre" class="col-md-4 col-form-label text-md-right">Categoria:</label>                            
-                          <select  id="no_conformidad" onchange="selecOp(event.target.value), showDiv(this)">
-                          <option value=""></option> 
-                          <option value="1">SubCategorias</option> 
-                              @foreach( $padre as $key => $value )
-
-                                  <option value="{{ $key }}">{{ $key}}</option>  
-
-                              @endforeach
-                          </select>
-
-                          <div id="hidden_div" style="display:none;">
-
-                            <select onchange="selecOp4(event.target.value)">
-                                <option value=""></option> 
-                                    @foreach( $sub as $key => $value )
-
-                                        <option value="{{ $key }}">{{ $key}}</option> 
-
-                                    @endforeach
-                            </select>
-                        <input id="valorDeSelect4" type="text" name="subcategoria" value="">
-                        </div>
-                          <input id="valorDeSelect" type="text" name="categoria" value="{{$transacc->categoria}}">
-                          <label for="descripcion" class="col-md-4 col-form-label text-md-right">Detalle:</label>
-                          <input name='detalle'  type="text" class="form-control" aria-label="" value="{{$transacc->detalle}}">
-                          <label for="tasa" class="col-md-4 col-form-label text-md-right">Monto:</label>
-                          <input name='monto'  type="text" class="form-control" value="{{$transacc->monto}}" >
-            </form>
-          </div>
-          <div class="modal-footer">
-          <button type="submit" class="btn btn-warning" >Editar <i class="fa fa-edit"></i></button>
-
-            <a href="{{ route('transaccions.index') }}" class="btn btn-danger" >Cancelar <i class="fa fa-ban"> </i></a>
-            
-          
-          </div>
           
         </div>
       </div>

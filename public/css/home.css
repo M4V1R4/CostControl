@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* Home */
+.h1-home{
+    color: #465561;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 1em;  
+}
 /* Input fields */
 .card{
     box-shadow: 0 10px 30px 0px rgba(0,0,0,0.2) !important;
@@ -93,4 +99,42 @@
 .content-table tbody tr .btn-crud{
     color: #fff;
     width: 50px;
+}
+
+
+/* Reports */
+
+.label-account{
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+}
+.label-balance{
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+}
+.form span.report{
+    position: absolute;
+    left: 10px;
+    bottom:10px;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #465561;
+    pointer-events: none;
+    cursor: text;
+    transition: 0.5s;
+}
+
+.lbl-report2{
+    font-family: 'Roboto', sans-serif;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.input-date{
+    font-family: 'Roboto', sans-serif;
+    border-width: 0 0 2px 0;
+    border-color: #465561;
+}
+.input-date:focus{
+    outline:none;
 }

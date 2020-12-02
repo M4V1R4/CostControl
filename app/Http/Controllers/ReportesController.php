@@ -37,9 +37,9 @@ class ReportesController extends Controller
         $fecha = Carbon::parse($now);
         $mfecha = $fecha->month;
         $id = auth()->user()->id;
-        $total= Transaccion::whereMonth('fecha', '>=', $mfecha)->sum('monto');
+        $total= Transaccion::whereMonth('fecha', '>=', $mfecha)->whereYear('fecha', '=', date('Y'))->sum('monto');
         $info =Transaccion::All();
-        $info =Transaccion::where('user_id', $id)->whereMonth('fecha', '>=', $mfecha)->get();
+        $info =Transaccion::where('user_id', $id)->whereMonth('fecha', '>=', $mfecha)->whereYear('fecha', '=', date('Y'))->get();
         return view('reportes.reporte3' ,compact('info','total'));
     }
     public function index4()
@@ -91,7 +91,7 @@ class ReportesController extends Controller
         }
         else{
         $info =Transaccion::All();
-        $info=Transaccion::select('id','tipo','categoria','detalle')->where('user_id', $id)->get();
+        $info=Transaccion::select('id','tipo','monto','fecha','categoria','detalle')->where('user_id', $id)->whereBetween('fecha', array($request->fecha1, $request->fecha2))->get();
         return view('reportes.reporte2' ,compact('total','info'));
         }
        
@@ -130,7 +130,7 @@ class ReportesController extends Controller
         }
         else{
         $info =Transaccion::All();
-        $info =Transaccion::where('user_id', $id)->whereYear('fecha', '=', date('Y'))->get();
+        $info =Transaccion::where('user_id', $id)->whereYear('fecha', '=', $yfecha)->get();
         return view('reportes.reporte6' ,compact('total','info'));
         }
         

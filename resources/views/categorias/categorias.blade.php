@@ -45,10 +45,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12 ">
-                                    <div class="d-flex justify-content-center">
-                                        <button  type="submit"  id='agregar'  class="btn btn-primary">Agregar</button>
-                                    </div>
+                                <div class="d-flex justify-content-center">
+                                    <button  type="submit"  id='agregar'  class="btn btn-primary">Agregar</button>
                                 </div>
+                            </div>
                         </div>
                             <!-- <input id="valorDeSelect" type="text" name="catPadre"> -->
                             <!-- <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion:</label>

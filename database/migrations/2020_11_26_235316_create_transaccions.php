@@ -17,7 +17,7 @@ class CreateTransaccions extends Migration
             $table->id();
             $table->string('tipo');
             $table->string('user_id');
-            $table->dateTime('fecha');
+            $table->date('fecha');
             $table->string('categoria');
             $table->string('cuenta');
             $table->string('detalle');
