@@ -16,9 +16,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script>
-var valores=[1,3];
-var info=['qew','rt'];
-$(document).ready(function(){
+var valores=[3,2,9];
+var info=['Alquiler','Vivienda','Traslado'];
+/*$(document).ready(function(){
     $.ajax({
         url:'/graph',
         method:'POST',
@@ -34,7 +34,7 @@ $(document).ready(function(){
         }
         
     });
-}
+}*/
 
 
     var ctx = document.getElementById('myChart').getContext('2d');

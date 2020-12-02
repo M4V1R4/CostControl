@@ -6,7 +6,7 @@
             <div class="col-md-8">
 
                     <div class="input-group">
-                    @crfs
+                          u6y
                     <h4>Sumatoria de gastos e ingresos del ultimo mes</h4>
                     <table id='tabla' class="table table-sm table-light">
                     <thead>
