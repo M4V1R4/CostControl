@@ -61,6 +61,11 @@ class ReportesController extends Controller
         $info =[];
         return view('reportes.reporte6' ,compact('info'));
     }
+    public function index7()
+    {
+        
+        return view('reportes.graph');
+    }
 
 
     public function show1(Request $request){
