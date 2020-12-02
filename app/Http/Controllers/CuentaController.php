@@ -33,7 +33,7 @@ class CuentaController extends Controller
         $monedas=Moneda::pluck('id','nombre');
         $monedasl =Moneda::All();
         $monedasl = Moneda::where('user_id', $id)->get();
-        return view('cuentas.cuentas', compact('cuentasl','monedas','monedasl'));
+        return view('cuentas.cuentas', compact('cuentasl','monedasl'));
         
          
     } 
@@ -99,7 +99,10 @@ class CuentaController extends Controller
      */
     public function edit(Cuenta $cuenta)
 
-    {   $monedas=Moneda::pluck('id','nombre');
+    {   
+        $id = auth()->user()->id;
+        $monedas =Moneda::All();
+        $monedas = Moneda::where('user_id', $id)->get();
         return view('cuentas.edit',compact('cuenta','monedas'));
     }
 

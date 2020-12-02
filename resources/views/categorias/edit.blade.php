@@ -23,8 +23,8 @@
                       <div class="form-field">
                         <select name="catPadre" id="catPadre" onchange="selecOp(event.target.value)" class="input-select mt-4" required>
                           <option value="N/A">N/A</option>
-                          @foreach($sub as $key => $value)
-                            <option value="{{ $key }}" @if($categoria->catPadre === $key) selected='selected' @endif>{{$key}}</option>
+                          @foreach($sub as $key )
+                            <option value="{{ $key->descripcion }}" @if($categoria->catPadre === $key->descripcion) selected='selected' @endif>{{$key->descripcion}}</option>
                           @endforeach
                         </select>
                         <span>Categoría padre</span>

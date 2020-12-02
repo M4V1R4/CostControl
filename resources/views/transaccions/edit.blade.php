@@ -40,16 +40,16 @@
                     <div class="row">
                       <div class="form-field col-md-6">
                         <select  id="cuenta" name="cuenta" class="input-select mt-4" required> 
-                            @foreach( $cuentas as $key => $value )
-                                <option value="{{ $key }}"@if($transacc->cuenta === $key) selected='selected' @endif>{{ $key}}</option> 
+                            @foreach( $cuentas as $key )
+                                <option value="{{ $key->nombre }}"@if($transacc->cuenta === $key->nombre) selected='selected' @endif>{{ $key->nombre}}</option> 
                             @endforeach
                         </select>
                         <span>Cuenta</span>
                       </div>
                       <div class="form-field col-md-6">
                         <select name="categoria" id="categoria" class="input-select mt-4" required>
-                            @foreach($sub as $key => $value)
-                              <option value="{{ $key }}" @if($transacc->categoria === $key) selected='selected' @endif>{{$key}}</option>
+                            @foreach($sub as $key)
+                              <option value="{{ $key->descripcion }}" @if($transacc->categoria === $key->descripcion) selected='selected' @endif>{{$key->descripcion}}</option>
                             @endforeach
                         </select>
                         <span>Categoría</span>
