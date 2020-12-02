@@ -56,7 +56,16 @@ class CuentaController extends Controller
         $pic_name = time() . $file->getClientOriginalName();
         $file->move(public_path() . '/images/' . $id, $pic_name);
         $pic_route = $id . '/' . $pic_name;*/
-        
+        $v = \Validator::make($request->all(), [
+            
+            'saldoInicial' => 'numeric|required|'
+        ]);
+
+        if ($v->fails())
+        {
+
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
 
         $nuevoCuenta = new Cuenta;
         $nuevoCuenta->nombre = $request->nombre;

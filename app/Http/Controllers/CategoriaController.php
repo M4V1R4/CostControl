@@ -47,6 +47,16 @@ class CategoriaController extends Controller
          */
         public function store(Request $request)
         {
+            $v = \Validator::make($request->all(), [
+            
+                'presupuesto' => 'numeric|required|'
+            ]);
+    
+            if ($v->fails())
+            {
+    
+                return redirect()->back()->withInput()->withErrors($v->errors());
+            }
             
             $id=0;
     
