@@ -1,13 +1,19 @@
 @extends('adminlte::page')
-
 @section('title','Dashboard')
-
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
-
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="h1-home">TRACK YOUR MONEY</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="h1-home">Bienvenido {{ Auth::user()->name }}</h1>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')

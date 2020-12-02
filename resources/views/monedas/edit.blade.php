@@ -15,7 +15,7 @@
             <h1>Editar moneda</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
@@ -26,7 +26,15 @@
                           <span>Nombre corto</span>   
                     </div>
                     <div class="form-field">
-                      <input name='simbolo'  type="text" class="input-text" value="{{$moneda->simbolo}}" required>
+                      @php
+                          $array  = ["₡","$","€"];
+                      @endphp
+                      <select name="simbolo" id="simbolo" class="input-select mt-4" required>
+                            @foreach($array as $item)
+                                <option value="{{ $item }}" @if($moneda->simbolo=== $item) selected='selected' @endif>{{ $item }}</option>
+                            @endforeach
+                      </select>
+                      <!-- <input name='simbolo'  type="text" class="input-text" value="{{$moneda->simbolo}}" required> -->
                       <span>Símbolo</span>
                     </div>
                     <div class="form-field">
